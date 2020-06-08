@@ -1,6 +1,7 @@
-const express = require('express');
 
+const express = require('express');
 const Pool = require('pg').Pool;
+const cors = require('cors');
 
 const pool = new Pool({
     user:'lrnvydpyoedmbk',
@@ -82,7 +83,7 @@ server.patch('/tarefa/:id/naoentregue', async function(request, response) {
     const sql = `UPDATE tarefs SET entregue = false WHERE id = $1`;
     await pool.query(sql, [id]);
     return response.status(204).send();
-})
+});
 
 
 
