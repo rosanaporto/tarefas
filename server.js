@@ -63,7 +63,7 @@ server.delete('/tarefa/:id', async function(request, response) {
 //UPDATE
 server.put('/tarefa/:id', async function(request, response) {
     const id = request.params.id;
-    const { disciplina, date, entrega } = request.body;
+    const { disciplina, date, entrega} = request.body;
     const sql = `UPDATE tarefas SET disciplina = $1, date = $2, entrega = $3 WHERE id = $4`;
     await pool.query(sql, [disciplina, date, entrega, id]);
     return response.status(204).send();
@@ -71,14 +71,14 @@ server.put('/tarefa/:id', async function(request, response) {
 
 
 //UPDATE Do Entregue
-server.patch('/tarefa/:id/entrega', async function(request, response) {
+server.patch('/tarefa/:id/entregue', async function(request, response) {
     const id = request.params.id;
     const sql = `UPDATE tarefas SET entrega = true WHERE id = $1`;
     await pool.query(sql, [id]);
     return response.status(204).send();
 })
 
-server.patch('/tarefa/:id/naoentrega', async function(request, response) {
+server.patch('/tarefa/:id/naoentregue', async function(request, response) {
     const id = request.params.id;
     const sql = `UPDATE tarefas SET entrega = false WHERE id = $1`;
     await pool.query(sql, [id]);
