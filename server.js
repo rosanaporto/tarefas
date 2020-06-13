@@ -63,9 +63,9 @@ server.delete('/tarefa/:id', async function(request, response) {
 //UPDATE
 server.put('/tarefa/:id', async function(request, response) {
     const id = request.params.id;
-    const { disciplina, date, entregue } = request.body;
+    const { disciplina, date, entrega } = request.body;
     const sql = `UPDATE tarefas SET disciplina = $1, date = $2, entrega = $3 WHERE id = $4`;
-    await pool.query(sql, [disciplina, date, entregue, id]);
+    await pool.query(sql, [disciplina, date, entrega, id]);
     return response.status(204).send();
 })
 
